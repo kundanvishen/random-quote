@@ -1,3 +1,4 @@
+
 var backgrounds = [{
   "from": "#00bf8f",
   "to": "#001510"
@@ -47,11 +48,13 @@ function getQuote() {
       $("#quoteContainer").html(res.quote);
       $("#author").html("~"+res.author);
       var random = getRandomBackground();
-      console.log(random);
+	  var property  = 'linear-gradient(to right, '+random.from+', ' +random.to+')';
+      console.log(property);
+	  
+	  var dom = document.getElementsByTagName("body")[0];
+	  dom.style.backgroundImage = 'linear-gradient(to right, ' + random.from + ', ' + random.to + ')';
 
-      $("html body").css({
-        background: "linear-gradient(to right, "+random.from+", "+random.to+")"
-      });
+
     }
   }); // ajax request
 } // getQuote()

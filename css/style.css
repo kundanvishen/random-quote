@@ -1,21 +1,38 @@
 body {
   color: white;
-  background: #3D7EAA;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #FFE47A, #3D7EAA);
+  /*background: -webkit-linear-gradient(to right, #FFE47A, #3D7EAA);*/
   /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(left, #FFE47A, #3D7EAA);
-  background: linear-gradient(to right, #FFE47A, #3D7EAA);
+  /*background: -webkit-linear-gradient(left, #FFE47A, #3D7EAA);
+  /* background: linear-gradient(to right, #556270,#FF6B6B); */
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-body{
--webkit-transition: all .8s ease;
--moz-transition: all .8s ease;
--ms-transition: all .8s ease;
--o-transition: all .8s ease;
-transition: all .8s ease;
-}
+    body {
+		-webkit-transition: background 0.2s ease-in-out;
+		transition: background 0.2s ease-in-out;
+
+	/*animation: colorchange 50s;*/
+      /*-webkit-animation: colorchange 50s;*/
+    }
+
+    @keyframes colorchange
+    {
+      0%   {background: red;}
+      25%  {background: yellow;}
+      50%  {background: blue;}
+      75%  {background: green;}
+      100% {background: red;}
+    }
+
+    @-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
+    {
+      0%   {background: red;}
+      25%  {background: yellow;}
+      50%  {background: blue;}
+      75%  {background: green;}
+      100% {background: red;}
+    }
 
 .card {
   background: transparent;
