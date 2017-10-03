@@ -43,9 +43,13 @@ function getQuote() {
     },
     url: 'https://andruxnet-random-famous-quotes.p.mashape.com/cat=',
     success: function(res) {
+      console.log(res);
       $("#quoteContainer").html(res.quote);
       $("#author").html("~"+res.author);
       var random = getRandomBackground();
+      console.log(random);
+      console.log(backgrounds[random]);
+      
       $("html body").css({
         "background": backgrounds[random].from,
         "background": "linear-gradient(to right, "+backgrounds[random].from+", "+backgrounds[random].to+")",
@@ -57,5 +61,5 @@ function getQuote() {
 } // getQuote()
 
 function getRandomBackground(){
-  var randomBackground = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+  return backgrounds[Math.floor(Math.random() * backgrounds.length)];
 }
