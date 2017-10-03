@@ -9,6 +9,14 @@ body {
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+body{
+-webkit-transition: all .8s ease;
+-moz-transition: all .8s ease;
+-ms-transition: all .8s ease;
+-o-transition: all .8s ease;
+transition: all .8s ease;
+}
+
 .card {
   background: transparent;
   margin: 50px auto;

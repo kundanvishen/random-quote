@@ -48,13 +48,9 @@ function getQuote() {
       $("#author").html("~"+res.author);
       var random = getRandomBackground();
       console.log(random);
-      console.log(backgrounds[random]);
-      
+
       $("html body").css({
-        "background": backgrounds[random].from,
-        "background": "linear-gradient(to right, "+backgrounds[random].from+", "+backgrounds[random].to+")",
-        "background": "-webkit-linear-gradient(to right, "+backgrounds[random].from+", "+backgrounds[random].to+")",
-        "background": "-webkit-linear-gradient(left, "+backgrounds[random].from+", "+backgrounds[random].to+")"
+        background: "linear-gradient(to right, "+random.from+", "+random.to+")"
       });
     }
   }); // ajax request
