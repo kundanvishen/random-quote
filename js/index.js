@@ -54,6 +54,7 @@ var quoteContainer = $("#quoteContainer");
 
 
 $(document).ready(function(){
+	getQuote();
   $(document).on("click", "#newQuoteButton", function(){
     getQuote();
   })
@@ -74,7 +75,8 @@ function getQuote() {
 		var random = getRandomBackground();
 		var property  = 'linear-gradient(to right, '+random.from+', ' +random.to+')';
 		console.log(property);
-
+		
+		$('meta[name=theme-color]').attr('content', random.from);
 		$('body').css({
 			background: "-webkit-gradient(linear, left top, right top, from("+random.from+"), to("+random.to+"))"}).css({
 			background: "-moz-linear-gradient(left, "+random.from+" 0%, "+random.to+" 100%)"});
