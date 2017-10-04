@@ -9,13 +9,28 @@ body {
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-body{
--webkit-transition: all .8s ease;
--moz-transition: all .8s ease;
--ms-transition: all .8s ease;
--o-transition: all .8s ease;
-transition: all .8s ease;
-}
+    body {
+      /*animation: colorchange 50s;*/
+      /*-webkit-animation: colorchange 50s;*/
+    }
+
+    @keyframes colorchange
+    {
+      0%   {background: red;}
+      25%  {background: yellow;}
+      50%  {background: blue;}
+      75%  {background: green;}
+      100% {background: red;}
+    }
+
+    @-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
+    {
+      0%   {background: red;}
+      25%  {background: yellow;}
+      50%  {background: blue;}
+      75%  {background: green;}
+      100% {background: red;}
+    }
 
 .card {
   background: transparent;

@@ -49,9 +49,9 @@ function getQuote() {
       var random = getRandomBackground();
       console.log(random);
 
-      $("html body").css({
+      $("html body").animate({
         background: "linear-gradient(to right, "+random.from+", "+random.to+")"
-      });
+      },1000);
     }
   }); // ajax request
 } // getQuote()
