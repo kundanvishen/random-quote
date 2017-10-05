@@ -51,13 +51,16 @@ var backgrounds = [{
 }];
 
 var quoteContainer = $("#quoteContainer");
-
+var quote = '';
+var author = '';
 
 $(document).ready(function(){
 	getQuote();
   $(document).on("click", "#newQuoteButton", function(){
     getQuote();
   })
+  
+
 }); // document.ready()
 
 function getQuote() {
@@ -70,17 +73,27 @@ function getQuote() {
     url: 'https://andruxnet-random-famous-quotes.p.mashape.com/cat=',
     success: function(res) {
 		console.log(res);
-		$("#quoteContainer").html(res.quote);
-		$("#author").html("~"+res.author);
-		var random = getRandomBackground();
-		var property  = 'linear-gradient(to right, '+random.from+', ' +random.to+')';
-		console.log(property);
+
+		quote = res.quote;
+		author = res.author;
 		
-		$('meta[name=theme-color]').attr('content', random.from);
-		$('body').css({
-			background: "-webkit-gradient(linear, left top, right top, from("+random.from+"), to("+random.to+"))"}).css({
-			background: "-moz-linear-gradient(left, "+random.from+" 0%, "+random.to+" 100%)"});
-	
+		$(".card-block").animate({opacity:0},500, function(){
+			$(this).animate({opacity:1}, 500);
+
+			var random = getRandomBackground();
+			var property  = 'linear-gradient(to right, '+random.from+', ' +random.to+')';
+			console.log(property);
+			
+			$('meta[name=theme-color]').attr('content', random.from);
+			$('body').animate({
+				background: "-webkit-gradient(linear, left top, right top, from("+random.from+"), to("+random.to+"))"}).css({
+				background: "-moz-linear-gradient(left, "+random.from+" 0%, "+random.to+" 100%)"});
+
+			$("#quoteContainer").html(res.quote);
+			$("#author").html("~"+res.author);
+		})
+
+			
 //		var dom = document.getElementsByTagName("body")[0];
 //		dom.style.backgroundImage = 'linear-gradient(to right, ' + random.from + ', ' + random.to + ')';
 
