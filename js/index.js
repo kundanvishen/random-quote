@@ -1,4 +1,3 @@
-
 var backgrounds = [{
   "from": "#00bf8f",
   "to": "#001510"
