@@ -57,8 +57,13 @@ $(document).ready(function(){
 	getQuote();
   $(document).on("click", "#newQuoteButton", function(){
     getQuote();
-  })
-  
+  });
+  $(document).on("click", "#tweetButton", function(){
+	  openLink('https://twitter.com/intent/tweet?hashtags=quotes&related=kundanvishen&text=' + encodeURIComponent('"' + quote + '" ' + author));
+  });
+  $(document).on("click", "#tumblrButton", function(){
+	  openLink('https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,kundanvishen,kundan,kundan.me&caption='+encodeURIComponent(author)+'&content=' + encodeURIComponent(quote)+'&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button');
+  });
 
 }); // document.ready()
 
@@ -106,4 +111,8 @@ function getQuote() {
 
 function getRandomBackground(){
   return backgrounds[Math.floor(Math.random() * backgrounds.length)];
-}
+} // getRandomBackground()
+
+function openLink(link) {
+	window.open(link);
+} // openLink()
