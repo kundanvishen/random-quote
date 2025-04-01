@@ -506,19 +506,56 @@ function updateBackground(colors) {
     // Set theme color for mobile browsers
     $('meta[name=theme-color]').attr('content', colors.from);
     
-    // Create a modern mesh gradient effect
-    document.body.style.background = `
-        radial-gradient(at 0% 0%, ${colors.from} 0%, transparent 50%),
-        radial-gradient(at 100% 0%, ${colors.to} 0%, transparent 50%),
-        radial-gradient(at 100% 100%, ${colors.from}aa 0%, transparent 70%),
-        radial-gradient(at 0% 100%, ${colors.to}aa 0%, transparent 70%)
-    `;
+    // Apply background color to body first (fallback for all browsers)
+    $('body').css('background-color', colors.from);
+    
+    // Create a modern mesh gradient effect with better mobile Safari compatibility
+    // Applying as separate CSS properties and using standard syntax
+    var gradientBg = 
+        'radial-gradient(circle at 0% 0%, ' + colors.from + ' 0%, transparent 50%), ' +
+        'radial-gradient(circle at 100% 0%, ' + colors.to + ' 0%, transparent 50%), ' +
+        'radial-gradient(circle at 100% 100%, ' + colors.from + '99 0%, transparent 70%), ' +
+        'radial-gradient(circle at 0% 100%, ' + colors.to + '99 0%, transparent 70%)';
+    
+    $('body').css({
+        'background': gradientBg,
+        '-webkit-background': gradientBg,
+        'background-color': colors.from
+    });
+    
+    // For Safari specifically, we'll also add a pseudo-element with the gradient
+    updateSafariBackground(colors);
     
     // Update particle colors
     updateParticleColors(colors);
     
     // Update shapes colors
     updateShapesColors(colors);
+}
+
+// Add helper function for Safari background
+function updateSafariBackground(colors) {
+    // First remove any existing safari-bg element
+    $('#safari-bg').remove();
+    
+    // Create a new div specific for Safari background
+    var safariBg = $('<div id="safari-bg"></div>').css({
+        'position': 'fixed',
+        'top': 0,
+        'left': 0,
+        'width': '100%',
+        'height': '100%',
+        'z-index': -3,
+        'background': colors.from,
+        'background-image': 
+            '-webkit-radial-gradient(left top, circle, ' + colors.from + ' 0%, transparent 50%), ' +
+            '-webkit-radial-gradient(right top, circle, ' + colors.to + ' 0%, transparent 50%), ' +
+            '-webkit-radial-gradient(right bottom, circle, ' + colors.from + '99 0%, transparent 70%), ' +
+            '-webkit-radial-gradient(left bottom, circle, ' + colors.to + '99 0%, transparent 70%)'
+    });
+    
+    // Append to body
+    $('body').append(safariBg);
 }
 
 function openLink(url) {
